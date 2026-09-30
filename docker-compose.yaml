@@ -1,0 +1,14 @@
+services:
+  cloudflare-ddns:
+    image: favonia/cloudflare-ddns:1.17.1
+    read_only: true
+    network_mode: host
+    cap_drop: [all]
+    security_opt: [no-new-privileges:true]
+    environment:
+      CACHE_EXPIRATION: 0h30m0s
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN}
+      DOMAINS: ${DOMAINS}
+      PROXIED: ${PROXIED}
+    user: "1000:1000"
+    restart: always
